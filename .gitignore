@@ -1,15 +1,15 @@
 # IDE
-/.idea/
-.vscode/
+.idea
+.vscode
 
 # Python
 *.pyc
-env/
-venv/
+env
+venv
 
 # Databases
 *.sqlite3
 
 # JavaScript
-node_modules/
-build/
+node_modules
+build
