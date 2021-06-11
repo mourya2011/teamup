@@ -1,0 +1,15 @@
+# IDE
+/.idea
+.vscode/
+
+# Python
+*.pyc
+env/
+venv/
+
+# Databases
+*.sqlite3
+
+# JavaScript
+node_modules/
+build/
