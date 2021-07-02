@@ -1,0 +1,29 @@
+{% load static %}
+
+<footer style="background-color:#333; width:100%; height:300px; margin-top:100px">
+    <div class="container" style="margin-bottom:19px">
+        <div class="row">
+            <div class="col-md-4 mt-5">
+                <h3 class="text-white" style="margin-bottom:15px">Contact Information</h3>
+                <p style="font-size:18px; color:white"><i class="fa fa-map-marker pr-4" style="color:#4CAF50"></i>MANIT Bhopal</p>
+                <p style="font-size:18px; color:white"><i class="fa fa-envelope pr-3" style="color:#4CAF50"></i>abc123@gmail.com</p>
+                <p style="font-size:18px; color:white"><i class="fa fa-mobile pr-4" style="color:#4CAF50"></i>+91 123456789/+91 987654321</p>
+                <p style="font-size:18px; color:white"><i class="fa fa-globe pr-3" style="color:#4CAF50"></i>www.helloworld.com</p>
+            </div>
+
+            <div class="col-md-8 mt-5 text-center">
+                <p style="color: white">For additional info about TeamX, please send us your email address</p>
+                <form method="post" class="form-inline">
+                    {% csrf_token %}
+                    <input type="email" name="emailid" placeholder="Email ID" required class="form-control" style="margin-left:200px; margin-right:10px">
+                    <input type="submit" value="Send" class="btn btn-primary" style="background-color:#4CAF50; border:none">
+                </form>
+                <br><br>
+                <p style="color: white"><i class="fa fa-copyright pr-2"></i>All copy rights reserved</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-strip" style="background-color:#4CAF50; height:50px">
+        <button type="button" class="btn btn-success" style="height:50px; background-color:#333; margin-left:730px; border-radius:0px">▲</button>
+    </div>
+</footer>

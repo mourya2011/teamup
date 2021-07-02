@@ -1,0 +1,20 @@
+.nav-link{
+    color:white;
+}
+.navbar-nav li a:hover {
+    background-color: #4CAF50;
+    color:white
+}
+.navbar-nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 13px 15px;
+    text-decoration: none;
+}
+.nav-item{
+    margin-left:20px;
+}
+.active{
+    background-color:#4CAF50;
+}

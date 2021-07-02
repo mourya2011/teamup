@@ -1,0 +1,21 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<br><br>
+<form class="container mt-5" method="post">
+    {% csrf_token %}
+    <h1  style="text-align:center; margin-bottom:25px">ADMIN LOGIN</h1>
+    <label style="margin-left:375px"><b>Username</b></label>
+    <input type="text" class="form-control" name="uname" placeholder="Enter Username" style="width:350px; margin-left:375px">
+    <br>
+    <label style="margin-left:375px"><b>Password</b></label>
+    <input type="password" class="form-control" name="pwd" placeholder="Enter Password" style="width:350px; margin-left:375px">
+    <br>
+    <input type="Submit" value="Login" class="btn btn-primary" style="margin-left:515px; background-color:#4CAF50; border:none">
+</form>
+
+{% include 'footer.html'%}
+{% endblock %}

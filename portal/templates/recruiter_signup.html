@@ -1,0 +1,81 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'navigation.html' %}
+<style>
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: #4CAF50;
+  background-color: #4CAF50;
+}
+</style>
+
+<script>
+    function checkpass()
+    {
+        if(document.signup.pwd.value != document.signup.cpwd.value)
+        {
+            alert('Password and Confirm password fields do not match');
+            document.signup.cpwd.focus();
+            return false;
+        }
+        else
+            return true;
+    }
+</script>
+
+<br><br>
+<form class="container mt-5" onsubmit="return checkpass();" name="signup" method="post">
+    {% csrf_token %}
+    <h1  style="text-align:center; margin-bottom:25px">RECRUITER SIGNUP</h1>
+    <label style="margin-left:375px"><b>First Name</b></label>
+    <input type="text" class="form-control" name="fname" placeholder="Enter First Name" style="width:350px; margin-left:375px" required>
+    <br>
+    <label style="margin-left:375px"><b>Last Name</b></label>
+    <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" style="width:350px; margin-left:375px">
+    <br>
+    <label style="margin-left:375px"><b>Year</b></label>
+    <input type="text" class="form-control" name="year" placeholder="Enter current year of study" style="width:350px; margin-left:375px">
+    <br>
+    <label style="margin-left:375px"><b>Email ID</b></label>
+    <input type="email" class="form-control" name="email" placeholder="Enter Email Address" style="width:350px; margin-left:375px" required>
+    <br>
+    <label style="margin-left:375px"><b>Password</b></label>
+    <input type="password" class="form-control" name="pwd" placeholder="Enter Password" style="width:350px; margin-left:375px" required>
+    <br>
+    <label style="margin-left:375px"><b>Confirm Password</b></label>
+    <input type="password" class="form-control" name="cpwd" placeholder="Re-enter Password" style="width:350px; margin-left:375px" required>
+    <br>
+    <label style="margin-left:375px"><b>Contact</b></label>
+    <input type="text" class="form-control" name="contact" placeholder="Enter Contact Number" style="width:350px; margin-left:375px" required>
+    <br>
+    <label style="margin-left:375px; margin-right:15px"><b>Gender</b></label>
+    <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline1" name="gender" class="custom-control-input" value="Male">
+        <label class="custom-control-label" for="customRadioInline1">Male</label>
+    </div>
+    <div class="custom-control custom-radio custom-control-inline ml-4">
+        <input type="radio" id="customRadioInline2" name="gender" class="custom-control-input" value="Female">
+        <label class="custom-control-label" for="customRadioInline2">Female</label>
+    </div>
+    <br><br>
+    <input type="submit" value="Register" class="btn btn-primary" style="margin-left:505px; background-color:#4CAF50; border:none">
+</form>
+
+{% include 'footer.html'%}
+
+{% ifequal error "no" %}
+<script>
+    alert("Registration successful");
+    window.location = ('{% url 'recruiter_login' %}');
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+    alert("Something went wrong. Please register again.");
+</script>
+{% endifequal %}
+
+{% endblock %}

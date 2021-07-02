@@ -1,0 +1,36 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<br><br>
+<form class="container mt-5" method="post">
+    {% csrf_token %}
+    <h1  style="text-align:center; margin-bottom:25px">STUDENT LOGIN</h1>
+    <label style="margin-left:375px"><b>Email ID</b></label>
+    <input type="email" class="form-control" name="uname" placeholder="Enter Email ID" style="width:350px; margin-left:375px">
+    <br>
+    <label style="margin-left:375px"><b>Password</b></label>
+    <input type="password" class="form-control" name="pwd" placeholder="Enter Password" style="width:350px; margin-left:375px">
+    <br>
+    <input type="submit" value="Login" class="btn btn-primary" style="margin-left:515px; background-color:#4CAF50; border:none">
+    <p style="text-align:center; margin-top:20px">Not registered yet? <a href="{% url 'student_signup' %}">Register</a></p>
+</form>
+
+{% include 'footer.html'%}
+
+{% ifequal error "no" %}
+<script>
+    alert("Login successful");
+    window.location = ('{% url 'student_home' %}');
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+    alert("Invalid Login credentials. Please try again.");
+</script>
+{% endifequal %}
+
+{% endblock %}

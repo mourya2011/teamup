@@ -20,4 +20,12 @@ from portal.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name="index"),
+    path('admin_login', admin_login, name="admin_login"),
+    path('student_login', student_login, name="student_login"),
+    path('recruiter_login', recruiter_login, name="recruiter_login"),
+    path('student_signup', student_signup, name="student_signup"),
+    path('recruiter_signup', recruiter_signup, name="recruiter_signup"),
+    path('student_home', student_home, name="student_home"),
+    path('recruiter_home', recruiter_home, name="recruiter_home"),
+    path('Logout', Logout, name="Logout"),
 ]
