@@ -18,4 +18,18 @@
 </form>
 
 {% include 'footer.html'%}
+
+{% ifequal error "no" %}
+<script>
+    alert("Login successful");
+    window.location = ('{% url 'admin_home' %}');
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+    alert("Invalid Login credentials. Please try again.");
+</script>
+{% endifequal %}
+
 {% endblock %}

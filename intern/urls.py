@@ -27,5 +27,13 @@ urlpatterns = [
     path('recruiter_signup', recruiter_signup, name="recruiter_signup"),
     path('developer_home', developer_home, name="developer_home"),
     path('recruiter_home', recruiter_home, name="recruiter_home"),
+    path('admin_home', admin_home, name="admin_home"),
     path('Logout', Logout, name="Logout"),
+    path('view_developers', view_developers, name="view_developers"),
+    path('delete_developer/<int:pid>', delete_developer, name="delete_developer"),
+    path('recruiter_pending', recruiter_pending, name="recruiter_pending"),
+    path('change_status/<int:pid>', change_status, name="change_status"),
+    path('recruiter_accepted', recruiter_accepted, name="recruiter_accepted"),
+    path('recruiter_rejected', recruiter_rejected, name="recruiter_rejected"),
+    path('recruiter_all', recruiter_all, name="recruiter_all"),
 ]

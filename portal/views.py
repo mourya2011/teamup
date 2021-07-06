@@ -10,7 +10,27 @@ def index(request):
 
 
 def admin_login(request):
-    return render(request, 'admin_login.html')
+    error = ""
+    if request.method == 'POST':
+        uname = request.POST['uname']
+        pwd = request.POST['pwd']
+        user = authenticate(username=uname, password=pwd)
+        try:
+            if user.is_staff:
+                login(request, user)
+                error = "no"
+            else:
+                error = "yes"
+        except:
+            error = "yes"
+    d = {'error': error}
+    return render(request, 'admin_login.html',d)
+
+
+def admin_home(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    return render(request, 'admin_home.html')
 
 
 def developer_home(request):
@@ -114,3 +134,72 @@ def recruiter_signup(request):
             error = "yes"
     d = {'error': error}
     return render(request, 'recruiter_signup.html', d)
+
+
+def view_developers(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    data = developer.objects.all()
+    d = {'data': data}
+    return render(request, 'view_developers.html', d)
+
+
+def delete_developer(request, pid):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    dev = developer.objects.filter(user_id=pid)
+    dev.delete()
+    return redirect('view_developers')
+
+
+def recruiter_pending(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    data = recruiter.objects.filter(status="pending")
+    d = {'data': data}
+    return render(request, 'recruiter_pending.html', d)
+
+
+def change_status(request, pid):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    error = ""
+    rec = recruiter.objects.get(user_id=pid)
+    if request.method == 'POST':
+        s = request.POST['status']
+        if s == "Accept":
+            s = "accepted"
+        else:
+            s = "rejected"
+        rec.status = s
+        try:
+            rec.save()
+            error = "no"
+        except:
+            error = "yes"
+    d = {'rec': rec, 'error': error}
+    return render(request, 'change_status.html', d)
+
+
+def recruiter_accepted(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    data = recruiter.objects.filter(status="accepted")
+    d = {'data': data}
+    return render(request, 'recruiter_accepted.html', d)
+
+
+def recruiter_rejected(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    data = recruiter.objects.filter(status="rejected")
+    d = {'data': data}
+    return render(request, 'recruiter_rejected.html', d)
+
+
+def recruiter_all(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    data = recruiter.objects.all()
+    d = {'data': data}
+    return render(request, 'recruiter_all.html', d)
