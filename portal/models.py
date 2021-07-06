@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
-class studentUser(models.Model):
+class developer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     mobile = models.CharField(max_length=15)
     year = models.CharField(max_length=4)

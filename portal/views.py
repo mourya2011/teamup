@@ -13,10 +13,10 @@ def admin_login(request):
     return render(request, 'admin_login.html')
 
 
-def student_home(request):
+def developer_home(request):
     if not request.user.is_authenticated:
-        return redirect('student_login')
-    return render(request, 'student_home.html')
+        return redirect('developer_login')
+    return render(request, 'developer_home.html')
 
 
 def recruiter_home(request):
@@ -30,7 +30,7 @@ def Logout(request):
     return redirect('index')
 
 
-def student_login(request):
+def developer_login(request):
     error = ""
     if request.method == 'POST':
         uname = request.POST['uname']
@@ -38,8 +38,8 @@ def student_login(request):
         user = authenticate(username=uname, password=pwd)
         if user:
             try:
-                user1 = studentUser.objects.get(user=user)
-                if user1.type == "student":
+                user1 = developer.objects.get(user=user)
+                if user1.type == "developer":
                     login(request, user)
                     error = "no"
                 else:
@@ -50,7 +50,7 @@ def student_login(request):
         else:
             error = "yes"
     d = {'error': error}
-    return render(request, 'student_login.html', d)
+    return render(request, 'developer_login.html', d)
 
 
 def recruiter_login(request):
@@ -76,7 +76,7 @@ def recruiter_login(request):
     return render(request, 'recruiter_login.html', d)
 
 
-def student_signup(request):
+def developer_signup(request):
     error = ""
     if request.method == 'POST':
         fname = request.POST['fname']
@@ -88,12 +88,12 @@ def student_signup(request):
         gen = request.POST['gender']
         try :
             new_user = User.objects.create_user(first_name=fname, last_name=lname, username=email, password=pwd)
-            studentUser.objects.create(user= new_user, year= year,mobile=contact, gender= gen, type="student")
+            developer.objects.create(user= new_user, year= year,mobile=contact, gender= gen, type="developer")
             error = "no"
         except:
             error = "yes"
     d = {'error': error}
-    return render(request, 'student_signup.html', d)
+    return render(request, 'developer_signup.html', d)
 
 
 def recruiter_signup(request):
