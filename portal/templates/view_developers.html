@@ -27,7 +27,7 @@
             <td>{{i.user.username}}</td>
             <td>{{i.mobile}}</td>
             <td>{{i.gender}}</td>
-            <td><a href="{% url 'delete_developer' i.user_id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Remove</a></td>
+            <td><a href="{% url 'delete_developer' i.user_id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a></td>
         </tr>
         {% endfor %}
         </tbody>

@@ -4,6 +4,85 @@
 
 {% include 'developer_navigation.html' %}
 
+<style>
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: #4CAF50;
+  background-color: #4CAF50;
+}
+</style>
+<br><br>
+<div class="container">
+    <form class="mt-5" name="signup" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1  style="text-align:center; margin-bottom:25px">PROFILE</h1>
+        <br>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label><b>First Name</b></label>
+                <input type="text" class="form-control" name="fname" value="{{dev.user.first_name}}">
+            </div>
+            <div class="form-group col-md-6">
+                <label><b>Last Name</b></label>
+                <input type="text" class="form-control" name="lname" value="{{dev.user.last_name}}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label><b>Email ID</b></label>
+                <input type="email" class="form-control" name="email" value="{{dev.user.username}}" readonly>
+            </div>
+            <div class="form-group col-md-6">
+                <label><b>Contact</b></label>
+                <input type="text" class="form-control" name="contact" value="{{dev.mobile}}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label><b>Year</b></label>
+                <input type="text" class="form-control" name="year" value="{{dev.year}}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label style="margin-right:10px"><b>Gender</b></label>
+                {% if dev.gender == "Male" %}
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioInline1" name="gender" class="custom-control-input" value="Male" checked>
+                    <label class="custom-control-label" for="customRadioInline1">Male</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline ml-4">
+                    <input type="radio" id="customRadioInline2" name="gender" class="custom-control-input" value="Female">
+                    <label class="custom-control-label" for="customRadioInline2">Female</label>
+                </div>
+                {% else %}
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioInline1" name="gender" class="custom-control-input" value="Male">
+                    <label class="custom-control-label" for="customRadioInline1">Male</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline ml-4">
+                    <input type="radio" id="customRadioInline2" name="gender" class="custom-control-input" value="Female" checked>
+                    <label class="custom-control-label" for="customRadioInline2">Female</label>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <input type="submit" value="Edit" class="btn btn-primary" style="margin-left:505px; background-color:#4CAF50; border:none">
+    </form>
+</div>
+
+{% ifequal error "no" %}
+<script>
+    alert("Profile updated successfully");
+    window.location = ('{% url 'developer_home' %}');
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+    alert("Something went wrong. Please try again.");
+</script>
+{% endifequal %}
 
 
 

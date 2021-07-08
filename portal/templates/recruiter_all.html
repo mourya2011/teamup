@@ -29,7 +29,10 @@
             <td>{{i.mobile}}</td>
             <td>{{i.gender}}</td>
             <td style="text-transform: capitalize">{{i.status}}</td>
-            <td><a href="{% url 'change_status' i.user_id %}" class="btn btn-success btn-sm">Change Status</a></td>
+            <td>
+                <a href="{% url 'change_status' i.user_id %}" class="btn btn-success btn-sm">Change Status</a>
+                | <a href="{% url 'delete_recruiter' i.user_id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
         </tr>
         {% endfor %}
         </tbody>

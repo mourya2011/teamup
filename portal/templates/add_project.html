@@ -1,0 +1,80 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'recruiter_navigation.html' %}
+
+<br>
+<form class="container mt-5" onsubmit="return checkpass();" name="signup" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h1  style="text-align:center; margin-bottom:25px">NEW PROJECT DETAILS</h1>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label>Project Title</label>
+            <input type="text" class="form-control" name="title" placeholder="Enter Project Title" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Start Date</label>
+            <input type="date" class="form-control" name="start_date" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label>End Date</label>
+            <input type="date" class="form-control" name="end_date" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Company Name</label>
+            <input type="text" class="form-control" name="company" placeholder="Enter Company Name(if any)">
+        </div>
+        <div class="form-group col-md-6">
+            <label>Location</label>
+            <input type="text" class="form-control" name="location" placeholder="Enter Location(Enter Remote if remote)" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label>Description</label>
+            <textarea class="form-control" name="description" placeholder="Enter Project Description" required></textarea>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label>Skills</label>
+            <textarea class="form-control" name="skills" placeholder="Enter Required Skills" required></textarea>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Experience</label>
+            <input type="text" class="form-control" name="experience" placeholder="Enter Experience" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label>Compensation</label>
+            <input type="text" class="form-control" name="compensation" placeholder="Enter Compensation" required>
+        </div>
+    </div>
+    <br>
+    <input type="submit" value="Add Project" class="btn btn-primary" style="margin-left:500px; background-color:#4CAF50; border:none">
+</form>
+
+{% ifequal error "no" %}
+<script>
+    alert("Project details added.");
+    window.location = ('{% url 'project_list' %}');
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+    alert("Something went wrong. Please try again.");
+</script>
+{% endifequal %}
+
+
+
+{% include 'footer.html'%}
+
+{% endblock %}
